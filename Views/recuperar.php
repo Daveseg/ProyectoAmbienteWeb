@@ -39,18 +39,14 @@
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">com</span>
                   </div>
 
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión</h5>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Recuperar Contraseña</h5>
 
                   <div class="form-outline mb-4">
                     <input id="txtCorreo" name="txtCorreo" type="email" class="form-control form-control-lg" placeholder="Correo Electrónico"/>
                   </div>
 
-                  <div class="form-outline mb-4">
-                    <input id="txtContrasenna" name="txtContrasenna" type="password" class="form-control form-control-lg" placeholder="Contraseña" />
-                  </div>
-
                   <div class="pt-1 mb-4">
-                    <button id="btnInicio" name="btnInicio" type="submit" class="btn btn-dark btn-lg btn-block">Iniciar Sesión</button>
+                    <button id="btbRecuperar" name="btbRecuperar" type="submit" class="btn btn-dark btn-lg btn-block">RECUPERAR CONTRASEÑA</button>
                   </div>
 
                   <a class="small text-muted" href="recuperar.php">¿Olvidaste tu contraseña?</a>

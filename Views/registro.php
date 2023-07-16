@@ -1,5 +1,4 @@
 <?php 
-
     include_once "layout.php";
     include_once "../Controllers/usuarioController.php";
 ?>
@@ -16,18 +15,16 @@
     <?php 
         MostrarHeader();
     ?>
-
-    <!-- LOGIN START-->
     <section class="vh-100" style="background-color: #FFFFFF;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
         <div>
-          <!--class="card" style="border-radius: 1rem;"-->
+        <!--class="card" style="border-radius: 1rem;"-->
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                alt="login form" class="img-fluid" style="border-radius: 1rem;" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
@@ -39,23 +36,38 @@
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">com</span>
                   </div>
 
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión</h5>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registro</h5>
 
                   <div class="form-outline mb-4">
-                    <input id="txtCorreo" name="txtCorreo" type="email" class="form-control form-control-lg" placeholder="Correo Electrónico"/>
+                    <input id="txtIdentificacion" name="txtIdentificacion" type="text" class="form-control form-control-lg" placeholder="Identificación" required/>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input id="txtContrasenna" name="txtContrasenna" type="password" class="form-control form-control-lg" placeholder="Contraseña" />
+                    <input id="txtNombre" name="txtNombre" type="text" class="form-control form-control-lg" placeholder="Nombre" required/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input id="txtCorreo" name="txtCorreo" type="email" class="form-control form-control-lg" placeholder="Correo Electrónico" required />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input id="txtDireccion" name="txtDireccion" type="text" class="form-control form-control-lg" placeholder="Dirección" required />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input id="txtTelefono" name="txtTelefono" type="text" class="form-control form-control-lg" placeholder="Teléfono" required />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input id="txtContrasenna" name="txtContrasenna" type="password"  class="form-control form-control-lg" placeholder="Contraseña" required/>
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button id="btnInicio" name="btnInicio" type="submit" class="btn btn-dark btn-lg btn-block">Iniciar Sesión</button>
+                    <button id="btnRegistro" name="btnRegistro" type="submit" class="btn btn-dark btn-lg btn-block">Registrarse</button>
                   </div>
 
-                  <a class="small text-muted" href="recuperar.php">¿Olvidaste tu contraseña?</a>
-                  <p class="mb-5 pb-lg-2" style="color: #3d464d;">¿No tienes una cuenta? <a href="registro.php"
-                      style="color: #ffd333;">Registrate aquí</a></p>
+                  <p class="mb-5 pb-lg-2" style="color: #3d464d;">¿Ya tienes una cuenta?  <a href="login.php"
+                      style="color: #ffd333;">Ir al Inicio de Sesión</a></p>
                   <a href="#!" class="small text-muted">Condiciones de uso.</a>
                   <a href="#!" class="small text-muted">Políticas de privacidad</a>
                 </form>
