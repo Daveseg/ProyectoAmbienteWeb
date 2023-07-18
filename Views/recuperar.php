@@ -46,7 +46,7 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button id="btbRecuperar" name="btbRecuperar" type="submit" class="btn btn-dark btn-lg btn-block">RECUPERAR CONTRASEÑA</button>
+                    <button id="btnRecuperar" name="btnRecuperar" type="submit" class="btn btn-dark btn-lg btn-block">RECUPERAR CONTRASEÑA</button>
                   </div>
 
                   <a class="small text-muted" href="recuperar.php">¿Olvidaste tu contraseña?</a>

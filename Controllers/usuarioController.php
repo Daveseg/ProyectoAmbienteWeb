@@ -51,7 +51,7 @@
             $mensaje = $mensaje . " Se ha generado la siguiente contraseña temporal: " . $claveTemp;
             $mensaje = $mensaje . ". Recuerde realizar el cambio de contraseña una vez que ingrese al sistema";
             EnviarCorreo($Correo, 'Recuperar contraseña', $mensaje);
-            ActualiarClaveUsuario($datos["IDUsuario"] ,$claveTemp);
+            ActualizarClaveUsuario($datos["IDUsuario"] ,$claveTemp);
             header("location: ../Views/login.php");
         }else{
             echo "USUARIO NO REGISTRADO";

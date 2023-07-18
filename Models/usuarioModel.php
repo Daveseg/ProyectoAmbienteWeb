@@ -6,11 +6,11 @@
         try
         {
         $enlace = OpenBD();
-        $sentencia = "CALL RegistrarUsuario('$Identificacion', '$Nombre', '$Correo','$Direccion', '$Telefono',  '$Contrasenna')";
+        $sentencia = "CALL RegistrarUsuario('$Identificacion', '$Nombre', '$Telefono','$Direccion', '$Correo',  '$Contrasenna')";
         $respuesta = $enlace -> query($sentencia);
         CloseBD($enlace);
 
-        return $respeusta;
+        return $respuesta;
     }
     catch(Exception $e){
         return false; 
@@ -20,7 +20,7 @@
     function ValidarSesion($Correo, $Contrasenna)
     {
         $enlace = OpenBD();
-        $sentencia = "CALL RegistrarUsuario('$Correo', '$Contrasenna')";
+        $sentencia = "CALL ValidarSesion('$Correo', '$Contrasenna')";
         $respuesta = $enlace -> query($sentencia);
         CloseBD($enlace);
 
