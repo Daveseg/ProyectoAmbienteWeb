@@ -81,7 +81,7 @@ function MostrarHeader()
             <div class="col-lg-4 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Buscar productos">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -91,8 +91,8 @@ function MostrarHeader()
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Customer Service</p>
-                <h5 class="m-0">Numero a poner</h5>
+                <p class="m-0">Servicio al ciente</p>
+                <h5 class="m-0">2057-4890</h5>
             </div>
         </div>
     </div>
