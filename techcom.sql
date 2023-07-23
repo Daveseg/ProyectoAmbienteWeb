@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jul 16, 2023 at 04:45 AM
+-- Generation Time: Jul 23, 2023 at 04:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,8 +43,8 @@ SELECT
         Admin, 
         IDUsuario
 FROM 	usuarios
-WHERE 	Correo = pCorreo
-	AND Contrasenna = pContrasenna;
+WHERE 	Correo = pCorreo;
+	
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure` (IN `pIDUsuario` INT(11), IN `pContrasenna` VARCHAR(25))   BEGIN
@@ -176,7 +176,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IDUsuario`, `Identificacion`, `Nombre`, `Telefono`, `Direccion`, `Correo`, `Contrasenna`, `Admin`) VALUES
-(2, '123', 'Jean', 'jeanguzal@gmail.com', 'Heredia', '88888888', 'abc123', b'1');
+(5, '123', 'jean', '88888888', 'Heredia', 'jeanguzal@gmail.com', '3HvhiYRZ', b'1'),
+(6, '456', 'David', '777777777', 'Alajuela', 'sinicah864@miqlab.com', 'Pl2yrcEy', b'1');
 
 --
 -- Indexes for dumped tables
@@ -277,7 +278,7 @@ ALTER TABLE `tipoproducto`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IDUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
