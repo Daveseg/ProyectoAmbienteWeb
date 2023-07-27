@@ -13,9 +13,7 @@
 
 <body>
     
-    <?php 
-        MostrarHeader();
-    ?>
+    
 
     <!-- LOGIN START-->
     <section class="vh-100" style="background-color: #FFFFFF;">

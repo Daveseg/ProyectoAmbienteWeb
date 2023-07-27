@@ -38,8 +38,8 @@ function MostrarHeader()
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
+                            <a class="dropdown-item" href="login.php">Sign in</a>
+                            <a class="dropdown-item" href="registro.php">Sign up</a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
