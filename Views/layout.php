@@ -139,7 +139,7 @@ function MostrarHeader()
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.php" class="nav-item nav-link">Contacto</a>
+                            <a href="contacto.php" class="nav-item nav-link">Contacto</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">

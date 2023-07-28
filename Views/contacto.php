@@ -1,4 +1,7 @@
-<?php include_once 'layout.php' ?>
+<?php
+    include_once '../Controllers/contactoController.php';
+    include_once 'layout.php';
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,12 @@
         </div>
     </div>
     <!-- Breadcrumb End -->
-
+    <?php
+                    if(isset($_POST["MsjPantalla"]))
+                    {
+                      echo '<div style="text-align:center" class="alert alert-light" role="alert">' . $_POST["MsjPantalla"] . '</div>';
+                    }
+                ?>
 
     <!-- Contact Start -->
     <div class="container-fluid">
@@ -29,32 +37,33 @@
         <div class="row px-xl-5">
             <div class="col-lg-7 mb-5">
                 <div class="contact-form bg-light p-30">
-                    <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                    
+                    <form role="form" class="text-start" action="" method="post" 
+                    name="sentMessage" id="contactForm">
                         <div class="control-group">
-                            <input type="text" class="form-control" id="name" placeholder="Nombre"
-                                required="required" data-validation-required-message="Por favor, escriba su nombre" />
+                            <input type="text" class="form-control" id="txtNombre"name="txtNombre" placeholder="Nombre"
+                                required="required" data-validation-required-message="Por favor, escriba su nombre"/>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control" id="email" placeholder="Correo electrónico"
-                                required="required" data-validation-required-message="Por favor introduzca su correo electrónico" />
+                            <input type="email" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="Correo electrónico"
+                                required="required" data-validation-required-message="Por favor introduzca su correo electrónico"/>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="text" class="form-control" id="subject" placeholder="Asunto"
-                                required="required" data-validation-required-message="Por favor ingrese un asunto" />
+                            <input type="text" class="form-control" id="txtAsunto" name="txtAsunto"  placeholder="Asunto"
+                                required="required" data-validation-required-message="Por favor ingrese un asunto"/>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control" rows="8" id="message" placeholder="Mensaje"
+                            <textarea class="form-control" rows="8"  id="txtMensaje"name="txtMensaje" placeholder="Mensaje"
                                 required="required"
                                 data-validation-required-message="Ingrese su mensaje"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Enviar mensaje</button>
-                        </div>
+                        <button class="btn btn-primary py-2 px-4" type="submit" id="btnContacto" name="btnContacto">Enviar mensaje</button>    
+                    </div>
                     </form>
                 </div>
             </div>
@@ -91,9 +100,6 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
