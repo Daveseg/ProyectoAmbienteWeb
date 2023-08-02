@@ -31,11 +31,12 @@
               <div class="card-body p-4 p-lg-5 text-black">
 
                 <form action="" method="post">
-
-                  <div class="d-flex align-items-center mb-3 pb-1">
+                  <a href="inicio.php" class="text-decoration-none">
+                  <div class="d-flex align-items-center mb-3 pb-1" href="inicio.php">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">Tech</span>
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">com</span>
                   </div>
+                  </a>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión</h5>
 
