@@ -60,6 +60,7 @@ echo '</div>
     <div class="row px-xl-5">';
 
 while ($fila = mysqli_fetch_array($respuesta)) {
+
     echo '<div class="col-md-3 mb-4">
     <div class="product-item bg-light">
         <div class="product-img position-relative overflow-hidden">
@@ -77,7 +78,7 @@ while ($fila = mysqli_fetch_array($respuesta)) {
         </div>
     </div>
 </div>';
-}
+
 
 echo '</div>
 </form>

@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
+
 -- Tiempo de generación: 08-08-2023 a las 07:12:25
+
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -168,6 +170,7 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `IDProveedor`, `IDSucursales`, `rutaImagen`) VALUES
 (1, 'Redragon K552 Kumara', 'Es un teclado mecánico diseñado especialmente para jugadores y usuarios que buscan una experiencia de escritura y juego de alta calidad.', 12000, 4, 3, 2, '\\ProyectoAmbienteWeb\\Views\\img\\redragon-k552.jpg'),
 (2, 'Huawei P30', '¡Descubre el poder de la fotografía con el Huawei P30, el teléfono inteligente perfecto para capturar momentos inolvidables! Equipado con una cámara Leica de triple lente, este dispositivo te permitirá dar rienda suelta a tu creatividad y obtener imá', 20000, 4, 9, 2, '\\ProyectoAmbienteWeb\\Views\\img\\huawei-p30.jpg'),
+
 (3, 'Razer Deathadder Essentials', 'Este ratón ergonómico ha sido diseñado especialmente para satisfacer las necesidades de los jugadores más exigentes y los usuarios que buscan una experiencia de uso inigualable.', 10000, 3, 8, 2, '\\ProyectoAmbienteWeb\\Views\\img\\razer-deathadder.png'),
 (4, 'Lenovo Thinkvision S24E10', 'Con su elegante diseño y pantalla de 23.8 pulgadas, este monitor ofrece imágenes nítidas y colores vibrantes en alta definición Full HD (1920 x 1080 píxeles). Disfruta de detalles precisos y una claridad impresionante para tus tareas diarias, trabajo', 97000, 5, 1, 2, '\\ProyectoAmbienteWeb\\Views\\img\\lenovo-thinvisions24e10.jpg'),
 (5, 'PC All-in-one HP', 'Computadora compacta con pantalla integrada', 450000, 1, 2, 1, '\\ProyectoAmbienteWeb\\Views\\img\\Allinone.jpeg'),
@@ -181,6 +184,7 @@ INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `
 (13, 'Monitor Acer 21.5', 'Monitor económico de 21.5\" con resolución Full HD. Perfecto para tareas diarias y entretenimiento. Imágenes claras y nítidas con colores vivos.', 150000, 5, 12, 1, '\\ProyectoAmbienteWeb\\Views\\img\\monitor-acer-k222hql.jpg'),
 (14, 'Monitor ASUS VP228HE', 'Monitor Full HD de 21.5\" diseñado para gaming y entretenimiento. Con tecnología GamePlus para mejorar la experiencia de juego. Imágenes fluidas y tiempos de respuesta rápidos.', 220000, 5, 6, 1, '\\ProyectoAmbienteWeb\\Views\\img\\asusvp.jpg'),
 (15, 'iPhone 13', 'Teléfono inteligente de última generación con potente rendimiento y cámara avanzada. Pantalla Super Retina XDR, chip A15 Bionic y sistema de doble cámara.', 450000, 2, 5, 1, '\\ProyectoAmbienteWeb\\Views\\img\\iphone13.jpg');
+
 
 -- --------------------------------------------------------
 
@@ -368,7 +372,9 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
+
   MODIFY `IDPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
