@@ -71,11 +71,11 @@ function MostrarHeader()
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
 
-                        <a href="" class="nav-item nav-link">Computadoras</a>
-                        <a href="" class="nav-item nav-link">Celulares</a>
-                        
-                        <a href="" class="nav-item nav-link">Perifericos</a>
-                        <a href="" class="nav-item nav-link">Promociones</a>
+                        <a href="catcom.php" class="nav-item nav-link">Computadoras</a>
+                        <a href="catcel.php" class="nav-item nav-link">Celulares</a>
+                        <a href="catper.php" class="nav-item nav-link">Perifericos</a>
+                        <a href="catmon.php" class="nav-item nav-link">Monitores</a>
+                        <a href="catpromo.php" class="nav-item nav-link">Promociones</a>
                     </div>
                 </nav>
             </div>

@@ -1,0 +1,47 @@
+<?php    
+    include_once "../Controllers/productoController.php";
+    include_once "layout.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php MostrarHead(); ?>
+</head>
+
+<body>
+    
+    <?php 
+        MostrarHeader();
+    ?>
+
+<h1 class=" position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Promociones</span></h2>
+    <?php
+                        ConsultarPromo();
+                    ?>
+
+    <?php
+    MostrarFooter();
+
+    ?>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
