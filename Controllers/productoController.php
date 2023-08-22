@@ -44,8 +44,6 @@ echo '</div>
             
         
     }
-<<<<<<< Updated upstream
-=======
     function ConsultarCompu() 
     {
         $respuesta = ConsultarComM();
@@ -207,7 +205,6 @@ echo '</div>
         
     }
 
->>>>>>> Stashed changes
     function FiltroProductos(){
         $categoria=@$_POST["txt_price"];
 
@@ -222,10 +219,6 @@ echo '</div>
     <div class="row px-xl-5">';
 
 while ($fila = mysqli_fetch_array($respuesta)) {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     echo '<div class="col-md-3 mb-4">
     <div class="product-item bg-light">
         <div class="product-img position-relative overflow-hidden">
@@ -233,11 +226,7 @@ while ($fila = mysqli_fetch_array($respuesta)) {
             <div class="product-action" >
                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                 
-<<<<<<< Updated upstream
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i> </a>
-=======
                 <a class="btn btn-outline-dark btn-square" href="detail.php?q='. $fila["IDPro"] .'"><i class="fa fa-search"></i> </a>
->>>>>>> Stashed changes
 
             </div>
         </div>
@@ -247,11 +236,7 @@ while ($fila = mysqli_fetch_array($respuesta)) {
         </div>
     </div>
 </div>';
-<<<<<<< Updated upstream
-
-=======
 }
->>>>>>> Stashed changes
 
 echo '</div>
 </form>
@@ -262,8 +247,6 @@ echo '</div>
         
     }
 
-<<<<<<< Updated upstream
-=======
     function ConsultarProductos($idPro)
     {
         $respuesta = ConsultarProductosM($idPro);
@@ -271,7 +254,27 @@ echo '</div>
 
     }
 
->>>>>>> Stashed changes
+    function ListarProductos()
+    {
+        $respuesta = ListarProductosM();
+
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+                echo    '
+                        <tr>
+                        <td style="text-align:center">'. $fila["IDPro"] .'</td>
+                        <td style="text-align:center">'. $fila["Nombre"] .'</td>
+                        <td style="text-align:center">'. $fila["Precio"] .'</td>
+                        <td style="text-align:center">'. $fila["Descripcion"] .'</td>
+                        <td style="text-align:center">   <a href="mantProductosEditar.php?q='. $fila["IDPro"] .'" class="btn"> Actualizar </a></td>
+                        </tr>
+                        ';
+            }
+        }
+    }
+
     
 
 ?>

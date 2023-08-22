@@ -34,7 +34,7 @@ function MostrarHeader()
 
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
+                <a href="inicio.php" class="text-decoration-none">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">Tech</span>
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">com</span>
                 </a>
@@ -101,7 +101,7 @@ function MostrarHeader()
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="login.php" class="btn px-0 ml-3">
+                            <a href="userOn.php" class="btn px-0 ml-3">
                                 <i class="fas fa-user text-primary"></i>
                             </a>
 

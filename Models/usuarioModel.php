@@ -44,4 +44,61 @@
         $enlace -> query($sentencia);
         CloseBD($enlace);
     }
+
+    function ConsultarUsuarioM($idUsuario)
+    {
+        $enlace = OpenBD();
+        $sentecia = "CALL ConsultarUsuario('$idUsuario')";
+        $respuesta = $enlace -> query($sentecia);
+        CloseBD($enlace);
+
+        return $respuesta;
+    }
+
+    function ActualizarUsuarioM($IdUsuario, $Nombre, $Telefono,$Direccion,$Correo,$Contrasenna )
+    {
+        try
+        {
+            $enlace = OpenBD();
+            $sentecia = "CALL ActualizarUsuario('$IdUsuario','$Nombre','$Telefono','$Direccion','$Correo','$Contrasenna')";
+            $respuesta = $enlace -> query($sentecia);
+            CloseBD($enlace);
+
+
+            return $respuesta;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+    function ActualizarUsuarioSinPwsM($IdUsuario, $Nombre, $Telefono,$Direccion,$Correo )
+    {
+        try
+        {
+            $enlace = OpenBD();
+            $sentecia = "CALL ActualizarUsuarioSinPWD('$IdUsuario','$Nombre','$Telefono','$Direccion','$Correo')";
+            $respuesta = $enlace -> query($sentecia);
+            CloseBD($enlace);
+
+
+            return $respuesta;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+    function ConsultarUsuariosM()
+    {
+        $enlace = OpenBD();
+        $sentecia = "CALL ConsultarUsuarios()";
+        $respuesta = $enlace -> query($sentecia);
+        CloseBD($enlace);
+
+        return $respuesta;
+    }
+
 ?>

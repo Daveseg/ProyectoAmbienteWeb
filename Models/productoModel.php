@@ -66,14 +66,25 @@
     function ConsultarProductosM($idPro)
     {
         $enlace = OpenBD();
-        $sentecia = "CALL ConsultarProducto('$idPro')";
+        $sentecia = "CALL ConsultarProductos('$idPro')";
         $respuesta = $enlace -> query($sentecia);
         CloseBD($enlace);
 
         return $respuesta;
     }
 
-    function FiltroProductosM($categoria)
+    function ListarProductosM()
+    {
+        $enlace = OpenBD();
+        $sentecia = "CALL ConsultarListaProductos()";
+        $respuesta = $enlace -> query($sentecia);
+        CloseBD($enlace);
+
+        return $respuesta;
+    }
+
+
+    /*function FiltroProductosM($categoria)
     {
         $enlace = OpenBD();
         $sentecia = "CALL FiltrarPrecio('$categoria')";
@@ -82,7 +93,7 @@
         CloseBD($enlace);
 
         return $respuesta;
-    }
+    }*/
 
     
 
