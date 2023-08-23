@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 22, 2023 at 01:09 PM
+-- Generation Time: Aug 24, 2023 at 01:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarClaveUsuario` (IN `pIDUsu
 	SET Contrasenna = pContrasenna
 	WHERE IDUsuario = pIDUsuario;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto` (IN `IDProducto` INT(11), IN `pNombre` VARCHAR(50), IN `pPrecio` INT, IN `pDescripcion` VARCHAR(250))   BEGIN
+
+	UPDATE producto 
+    SET Nombre = pNombre,
+		Precio = pPrecio,
+        Descripcion = pDescripcion
+	WHERE IDPro = IDProducto;
+    
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pIDUsuario` INT(11), IN `pNombre` VARCHAR(100), IN `pTelefono` VARCHAR(30), IN `pDireccion` VARCHAR(300), IN `pCorreo` VARCHAR(50), IN `pContrasenna` VARCHAR(25))   BEGIN
@@ -186,6 +196,13 @@ VALUES (pNombre,pCorreo,pAsunto,pMensaje);
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProducto` (IN `pNombre` VARCHAR(50), IN `pPrecio` INT, IN `pDescripcion` VARCHAR(250), IN `pIDTipoP` INT, IN `pIDProveedor` INT, IN `pIDSucursales` INT, IN `pRutaImagen` VARCHAR(100))   BEGIN
+
+INSERT INTO `techcom`.`producto`(`Nombre`,`Precio`,`Descripcion`,`IDTipoP`,`IDProveedor`,`IDSucursales`,`RutaImagen`)
+VALUES (pNombre,pPrecio,pDescripcion,pIDTipoP,pIDProveedor,pIDSucursales,pRutaImagen);
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuario` (IN `pIdentificacion` VARCHAR(30), IN `pNombre` VARCHAR(100), IN `pTelefono` VARCHAR(30), IN `pDireccion` VARCHAR(300), IN `pCorreo` VARCHAR(50), IN `pContrasenna` VARCHAR(25))   BEGIN
 
 INSERT INTO `techcom`.`usuarios`(`Identificacion`,`Nombre`,`Telefono`,`Direccion`,`Correo`,`Contrasenna`,`Admin`)
@@ -285,7 +302,8 @@ INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `
 (12, 'Impresora HP DeskJet 2130', 'Impresora multifuncional asequible para el hogar. Permite imprimir, escanear y copiar documentos y fotos. Diseño compacto y fácil de usar.', 40000, 3, 2, 3, '\\ProyectoAmbienteWeb\\Views\\img\\deskjet.jpg'),
 (13, 'Monitor Acer 21.5', 'Monitor económico de 21.5\" con resolución Full HD. Perfecto para tareas diarias y entretenimiento. Imágenes claras y nítidas con colores vivos.', 150000, 5, 12, 1, '\\ProyectoAmbienteWeb\\Views\\img\\monitor-acer-k222hql.jpg'),
 (14, 'Monitor ASUS VP228HE', 'Monitor Full HD de 21.5\" diseñado para gaming y entretenimiento. Con tecnología GamePlus para mejorar la experiencia de juego. Imágenes fluidas y tiempos de respuesta rápidos.', 220000, 5, 6, 1, '\\ProyectoAmbienteWeb\\Views\\img\\asusvp.jpg'),
-(15, 'iPhone 13', 'Teléfono inteligente de última generación con potente rendimiento y cámara avanzada. Pantalla Super Retina XDR, chip A15 Bionic y sistema de doble cámara.', 450000, 2, 5, 1, '\\ProyectoAmbienteWeb\\Views\\img\\iphone13.jpg');
+(15, 'iPhone 13', 'Teléfono inteligente de última generación con potente rendimiento y cámara avanzada. Pantalla Super Retina XDR, chip A15 Bionic y sistema de doble cámara.', 450000, 2, 5, 1, '\\ProyectoAmbienteWeb\\Views\\img\\iphone13.jpg'),
+(17, 'Test', 'Producto test', 123, 1, 1, 1, '/asd');
 
 -- --------------------------------------------------------
 
@@ -498,7 +516,7 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IDPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `IDPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `proveedor`
