@@ -1,8 +1,6 @@
 <?php    
     include_once "../Controllers/productoController.php";
     include_once "layout.php";
-    $valorQ = $_GET["q"];
-    $datos = ConsultarProductos($valorQ);
 ?>
 
 <!DOCTYPE html>
@@ -18,41 +16,48 @@
 
     <form role="form" class="text-center mx-auto" style="max-width: 25%;" action="" method="post">
 
-    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Actualizar Producto</h5>
-
-<input type="hidden" name="txtIdUsuario" value="<?php echo $datos["IDPro"] ?>">
-
-<label>ID Producto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtIDProducto" required name="txtIDProducto" 
-    type="text" class="form-control" placeholder="ID Producto" style="background-color:#DEDEDE"
-    value="<?php echo $datos["IDPro"] ?>">
-</div>
-
+    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Agregar Nuevo Producto</h5>
 
 <label>Nombre Producto</label>
 <div class="input-group input-group-outline my-2">
-    <input id="txtNombre" required name="txtNombre" type="text" class="form-control" placeholder="Nombre"
-    value="<?php echo $datos["Nombre"] ?>">
+    <input id="txtNombre" required name="txtNombre" type="text" class="form-control" placeholder="Nombre del producto">
 </div>
 
 
 <label>Precio Prodcuto</label>
 <div class="input-group input-group-outline my-2">
-    <input id="txtPrecio" required name="txtPrecio" type="text" class="form-control" placeholder="Precio"
-    value="<?php echo $datos["Precio"] ?>">
+    <input id="txtPrecio" required name="txtPrecio" type="text" class="form-control" placeholder="Precio del producto">
 </div>
 
 <label>Descripción Producto</label>
 <textarea id="txtDescripcion" required name="txtDescripcion" class="form-control"
-    placeholder="Precio" style="resize: vertical; overflow: auto;"><?php echo $datos["Descripcion"] ?></textarea>
+    placeholder="Descripción del producto" style="resize: vertical; overflow: auto;"></textarea>
 
+<label>Tipo Prodcuto</label>
+<div class="input-group input-group-outline my-2">
+    <input id="txtTipo" required name="txtTipo" type="text" class="form-control" placeholder="Tipo del producto">
+</div>  
 
-    
+<label>Proveedor Prodcuto</label>
+<div class="input-group input-group-outline my-2">
+    <input id="txtProveedor" required name="txtProveedor" type="text" class="form-control" placeholder="Proveedor del producto">
+</div>
+
+<label>Sucursal Prodcuto</label>
+<div class="input-group input-group-outline my-2">
+    <input id="txtSucursal" required name="txtSucursal" type="text" class="form-control" placeholder="Sucursal del producto">
+</div>
+
+<label>Ruta de imagen del Prodcuto</label>
+<div class="input-group input-group-outline my-2">
+    <input id="txtRuta" required name="txtRuta" type="text" class="form-control" placeholder="Ruta de la imagen del producto">
+</div>
+
 
 <div class="text-center my-4">
-    <button id="btnActualizarProducto" name="btnActualizarProducto" type="submit" class="btn bg-gradient-primary w-100">Actualizar</button>
+    <button id="btnRegistroProducto" name="btnRegistroProducto" type="submit" class="btn bg-gradient-primary w-100">Agregar Producto</button>
 </div>
+
 
 
 </form>

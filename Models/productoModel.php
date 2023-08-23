@@ -95,6 +95,38 @@
         return $respuesta;
     }*/
 
-    
+    function ActualizarProductoM($IdProducto, $Nombre, $Precio,$Descripcion)
+    {
+        try
+        {
+            $enlace = OpenBD();
+            $sentecia = "CALL ActualizarProducto('$IdProducto','$Nombre','$Precio','$Descripcion')";
+            $respuesta = $enlace -> query($sentecia);
+            CloseBD($enlace);
+
+
+            return $respuesta;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+    function RegistrarProductoM($Nombre, $Precio, $Descripcion, $Tipo, $Proveedor, $Sucursal, $RutaImagen)
+    {
+        try
+        {
+        $enlace = OpenBD();
+        $sentencia = "CALL RegistrarProducto('$Nombre', '$Precio', '$Descripcion','$Tipo', '$Proveedor',  '$Sucursal','$RutaImagen')";
+        $respuesta = $enlace -> query($sentencia);
+        CloseBD($enlace);
+
+        return $respuesta;
+    }
+    catch(Exception $e){
+        return false; 
+    }
+    }
 
 ?>

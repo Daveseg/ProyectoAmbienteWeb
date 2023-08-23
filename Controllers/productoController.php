@@ -275,6 +275,43 @@ echo '</div>
         }
     }
 
+
+    if(isset($_POST["btnActualizarProducto"]))
+    {
+        $IdProducto = $_POST["txtIDProducto"];
+        $Nombre = $_POST["txtNombre"];
+        $Precio = $_POST["txtPrecio"];
+        $Descripcion = $_POST["txtDescripcion"];
+
+        
+        $respuesta = ActualizarProductoM($IdProducto, $Nombre, $Precio, $Descripcion);
+        $_POST["MsjPantalla"] = "Datos actualizados con éxito";
+        echo '<script>alert("'.$_POST["MsjPantalla"].'");</script>';
+        header("location: mantProductos.php");
+    }   
+
+    if(isset($_POST["btnRegistroProducto"]))
+    {
+        $Nombre = $_POST["txtNombre"];
+        $Precio = $_POST["txtPrecio"];
+        $Descripcion = $_POST["txtDescripcion"];
+        $Tipo = $_POST["txtTipo"];
+        $Proveedor = $_POST["txtProveedor"];
+        $Sucursal = $_POST["txtSucursal"];
+        $RutaImagen = $_POST["txtRuta"];
+
+        $respuesta = RegistrarProductoM($Nombre, $Precio, $Descripcion, $Tipo, $Proveedor, $Sucursal, $RutaImagen);
+        
+        if($respuesta == true)
+        {
+            header("location: ../Views/mantProductos.php");
+        }
+        else
+        {
+            $_POST["MsjPantalla"] = "No se ha podido registrar su información";
+        }
+    } 
+
     
 
 ?>
