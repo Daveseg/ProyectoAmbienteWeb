@@ -254,6 +254,110 @@ echo '</div>
 
     }
 
+    function ConsultarTipoProductos()
+    {
+        $respuesta = ListarTiposProductosM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+
+                echo "<option value=" . $fila["IDTipoP"] . ">" . $fila["Tipo"] . "</option>";
+                
+            }
+        }
+
+    }
+
+    function ConsultarProveedores()
+    {
+        $respuesta = ListarProveedoresM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+
+                echo "<option value=" . $fila["IDProveedor"] . ">" . $fila["Nombre"] . "</option>";
+                
+            }
+        }
+
+    }
+
+    function ConsultarSucursales()
+    {
+        $respuesta = ListarSucursalesM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+
+                echo "<option value=" . $fila["IDSucursales"] . ">" . $fila["Nombre"] . "</option>";
+                
+            }
+        }
+
+    }
+
+    function ConsultarTipoProductosEdit($val)
+    {
+        $respuesta = ListarTiposProductosM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+                if($fila["IDTipoP"]==$val)
+                {
+                    echo "<option value=" . $fila["IDTipoP"] . " selected>" . $fila["Tipo"] . "</option>";
+                }
+                else{
+                    echo "<option value=" . $fila["IDTipoP"] . ">" . $fila["Tipo"] . "</option>";
+                }                
+            }
+        }
+
+    }
+
+    function ConsultarProveedoresEdit($val)
+    {
+        $respuesta = ListarProveedoresM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+                if($fila["IDProveedor"]==$val)
+                {
+                    echo "<option value=" . $fila["IDProveedor"] . " selected>" . $fila["Nombre"] . "</option>";
+                }
+                else{
+                    echo "<option value=" . $fila["IDProveedor"] . ">" . $fila["Nombre"] . "</option>";
+                }                 
+                
+            }
+        }
+
+    }
+
+    function ConsultarSucursalesEdit($val)
+    {
+        $respuesta = ListarSucursalesM();
+        if($respuesta -> num_rows > 0)
+        {
+            while($fila = mysqli_fetch_array($respuesta))
+            {
+
+                if($fila["IDSucursales"]==$val)
+                {
+                    echo "<option value=" . $fila["IDSucursales"]  . " selected>" . $fila["Nombre"] . "</option>";
+                }
+                else{
+                    echo "<option value=" . $fila["IDSucursales"] . ">" . $fila["Nombre"] . "</option>";
+                } 
+            }
+        }
+
+    }
+
     function ListarProductos()
     {
         $respuesta = ListarProductosM();
@@ -268,7 +372,8 @@ echo '</div>
                         <td style="text-align:center">'. $fila["Nombre"] .'</td>
                         <td style="text-align:center">'. $fila["Precio"] .'</td>
                         <td style="text-align:center">'. $fila["Descripcion"] .'</td>
-                        <td style="text-align:center">   <a href="mantProductosEditar.php?q='. $fila["IDPro"] .'" class="btn"> Actualizar </a></td>
+                        <td style="text-align:center">   <a href="mantProductosEditar.php?q='. $fila["IDPro"] .'" class="btn btn-dark"> Actualizar </a></td>
+                        <td style="text-align:center">   <a href="mantProductoEliminar.php?q='. $fila["IDPro"] .'" class="btn btn-danger"> Eliminar </a></td>
                         </tr>
                         ';
             }
@@ -282,12 +387,21 @@ echo '</div>
         $Nombre = $_POST["txtNombre"];
         $Precio = $_POST["txtPrecio"];
         $Descripcion = $_POST["txtDescripcion"];
+        $Tipo = $_POST["txtTipo"];
+        $Proveedor = $_POST["txtProveedor"];
+        $Sucursal = $_POST["txtSucursal"];
+        $RutaImagen = $_POST["txtRuta"];
 
         
-        $respuesta = ActualizarProductoM($IdProducto, $Nombre, $Precio, $Descripcion);
-        $_POST["MsjPantalla"] = "Datos actualizados con éxito";
-        echo '<script>alert("'.$_POST["MsjPantalla"].'");</script>';
-        header("location: mantProductos.php");
+        $respuesta = ActualizarProductoM($IdProducto, $Nombre, $Precio, $Descripcion,$Tipo,$Proveedor,$Sucursal,$RutaImagen);
+
+        if($respuesta)
+        {
+            header("location: mantProductos.php");
+        }
+        else{
+            $_POST["MsjPantalla"] = "Datos actualizados con éxito";
+        }        
     }   
 
     if(isset($_POST["btnRegistroProducto"]))
@@ -312,6 +426,11 @@ echo '</div>
         }
     } 
 
-    
+    function EliminarProducto($IdProducto){
+
+        EliminarProductoM($IdProducto);
+        header("location: mantProductos.php");
+        
+    }
 
 ?>

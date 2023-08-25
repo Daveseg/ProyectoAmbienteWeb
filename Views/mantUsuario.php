@@ -47,8 +47,8 @@ if($_SESSION["RolUsuario"] == 1)
                             </tbody>
                         </table>   
                             <div class="d-flex justify-content-center align-items-center">
-                                <a href="mantProductos.php" class="btn">Modificar Inventario de productos</a>
-                            </div>
+                                <a href="mantProductos.php" class="btn btn-primary">Inventario de Productos</a>
+                            </div></br>
 
                         <form action="" method="post">
                                 <button id="btnCerrarSesion" name="btnCerrarSesion" type="submit" class="btn btn-dark btn-lg btn-block">Cerrar Sesión</button>

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Aug 24, 2023 at 01:07 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Servidor: 127.0.0.1:3307
+-- Tiempo de generación: 25-08-2023 a las 06:08:32
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,12 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `techcom`
+-- Base de datos: `techcom`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarClaveUsuario` (IN `pIDUsuario` INT(11), IN `pContrasenna` VARCHAR(25))   BEGIN
 
@@ -33,12 +33,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarClaveUsuario` (IN `pIDUsu
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto` (IN `IDProducto` INT(11), IN `pNombre` VARCHAR(50), IN `pPrecio` INT, IN `pDescripcion` VARCHAR(250))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto` (IN `IDProducto` INT(11), IN `pNombre` VARCHAR(50), IN `pPrecio` INT, IN `pDescripcion` VARCHAR(250), IN `pIDTipoP` INT, IN `pIDProveedor` INT, IN `pIDSucursales` INT, IN `pRutaImagen` VARCHAR(100))   BEGIN
+	
+    DECLARE pRuta varchar(100);
 
+	set pRuta = CONCAT ('\\ProyectoAmbienteWeb\\Views\\img\\', pRutaImagen);
+    
 	UPDATE producto 
     SET Nombre = pNombre,
 		Precio = pPrecio,
-        Descripcion = pDescripcion
+        Descripcion = pDescripcion,
+        IDTipoP = pIDTipoP,
+        IDProveedor = pIDProveedor,
+        IDSucursales = pIDSucursales,
+        RutaImagen = pRuta
 	WHERE IDPro = IDProducto;
     
 END$$
@@ -104,13 +112,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductos` (IN `pIdPro` BIGINT)   BEGIN
 
-		SELECT 	
-				Nombre,
-				Descripcion,
-				Precio,
-                rutaImagen,
-                IDPro
-		FROM producto
+		SELECT 	* FROM producto
         WHERE IDPro = pIdPro;
 
 END$$
@@ -133,6 +135,24 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductosPromocion` ()   BEGIN
    SELECT IDPro,rutaImagen, Nombre, Descripcion, Precio FROM producto WHERE IDTipoP = 4;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProveedores` ()   BEGIN
+
+SELECT * FROM techcom.proveedor;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarSucursales` ()   BEGIN
+
+SELECT * FROM techcom.sucursal;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTipoProductos` ()   BEGIN
+
+SELECT * FROM techcom.tipoproducto;
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarUsuario` (IN `pIDUsuario` BIGINT)   BEGIN
@@ -164,6 +184,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarUsuarios` ()   BEGIN
 				THEN 'Usuario'
 				ELSE '' END ) AS Admin
 		FROM usuarios;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarProducto` (IN `IdProducto` INT)   BEGIN
+
+delete from techcom.producto
+where IDPro = IdProducto;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `FiltrarPrecio` (IN `pCategoria` VARCHAR(100))   BEGIN
@@ -198,8 +224,12 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProducto` (IN `pNombre` VARCHAR(50), IN `pPrecio` INT, IN `pDescripcion` VARCHAR(250), IN `pIDTipoP` INT, IN `pIDProveedor` INT, IN `pIDSucursales` INT, IN `pRutaImagen` VARCHAR(100))   BEGIN
 
-INSERT INTO `techcom`.`producto`(`Nombre`,`Precio`,`Descripcion`,`IDTipoP`,`IDProveedor`,`IDSucursales`,`RutaImagen`)
-VALUES (pNombre,pPrecio,pDescripcion,pIDTipoP,pIDProveedor,pIDSucursales,pRutaImagen);
+DECLARE pRuta varchar(100);
+
+set pRuta = CONCAT ('\\ProyectoAmbienteWeb\\Views\\img\\', pRutaImagen);
+
+INSERT INTO techcom.producto(`Nombre`,`Precio`,`Descripcion`,`IDTipoP`,`IDProveedor`,`IDSucursales`,`RutaImagen`)
+VALUES (pNombre,pPrecio,pDescripcion,pIDTipoP,pIDProveedor,pIDSucursales,pRuta);
 
 END$$
 
@@ -229,7 +259,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carrito`
+-- Estructura de tabla para la tabla `carrito`
 --
 
 CREATE TABLE `carrito` (
@@ -242,7 +272,7 @@ CREATE TABLE `carrito` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacto`
+-- Estructura de tabla para la tabla `contacto`
 --
 
 CREATE TABLE `contacto` (
@@ -256,7 +286,7 @@ CREATE TABLE `contacto` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventario`
+-- Estructura de tabla para la tabla `inventario`
 --
 
 CREATE TABLE `inventario` (
@@ -269,7 +299,7 @@ CREATE TABLE `inventario` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
 CREATE TABLE `producto` (
@@ -284,7 +314,7 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `producto`
+-- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `IDProveedor`, `IDSucursales`, `rutaImagen`) VALUES
@@ -295,7 +325,7 @@ INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `
 (5, 'PC All-in-one HP', 'Computadora compacta con pantalla integrada', 450000, 1, 2, 1, '\\ProyectoAmbienteWeb\\Views\\img\\Allinone.jpeg'),
 (6, 'Laptop Lenovo Ideapad', 'Laptop económica para tareas diarias. Perfecta para navegar por internet, trabajar en documentos y disfrutar de contenido multimedia. Incluye pantalla de 15.6\", procesador eficiente y suficiente espacio de almacenamiento.', 300000, 1, 1, 3, '\\ProyectoAmbienteWeb\\Views\\img\\laptop-lenovo-ideapad-s145-156-celeron-128gb-4gb.jpg'),
 (7, 'Xiaomi Redmi Note 10', 'Teléfono Android con pantalla AMOLED de 6.43\" y cámara versátil. Equipado con batería de larga duración, procesador potente y diseño moderno. Perfecto para multitarea y entretenimiento móvil.', 180000, 2, 10, 3, '\\ProyectoAmbienteWeb\\Views\\img\\redminote10.jpg'),
-(8, 'Motorola Moto G Power', 'Teléfono con enfoque en la duración de la batería. Equipado con una gran batería de 5000 mAh que puede durar hasta varios días de uso moderado. Pantalla de 6.6\", cámara triple y rendimiento sólido.', 220000, 2, 13, 2, '\\ProyectoAmbienteWeb\\Views\\img\\mot-g-power.jpg'),
+(8, 'Motorola Moto G Power', 'Teléfono con enfoque en la duración de la batería. Equipado con una gran batería de 5000 mAh que puede durar hasta varios días de uso moderado. Pantalla de 6.6\", cámara triple y rendimiento sólido.', 220001, 2, 13, 2, '\\ProyectoAmbienteWeb\\Views\\img\\mot-g-power.jpg'),
 (9, 'Teclado Logitech K380', 'Teclado inalámbrico compacto y versátil. Puede conectarse a varios dispositivos a la vez, como computadoras, tablets y smartphones. Diseño cómodo y portátil para trabajar en cualquier lugar.', 40000, 3, 11, 1, '\\ProyectoAmbienteWeb\\Views\\img\\k380.jpeg'),
 (10, 'Audífonos Panasonic RP-HT161', 'Audífonos over-ear cómodos para un uso prolongado. Ofrecen un sonido equilibrado y nítido para escuchar música y ver películas. Acolchados en las orejeras para mayor comodidad.', 25000, 4, 14, 2, '\\ProyectoAmbienteWeb\\Views\\img\\panasonic-ht-1617063.jpg'),
 (11, 'Webcam Logitech C270', 'Cámara web HD con micrófono integrado. Ideal para videoconferencias y streaming en vivo. Ofrece video claro y fluido, incluso en condiciones de poca luz.', 35000, 3, 11, 1, '\\ProyectoAmbienteWeb\\Views\\img\\c270.jpeg'),
@@ -303,12 +333,12 @@ INSERT INTO `producto` (`IDPro`, `Nombre`, `Descripcion`, `Precio`, `IDTipoP`, `
 (13, 'Monitor Acer 21.5', 'Monitor económico de 21.5\" con resolución Full HD. Perfecto para tareas diarias y entretenimiento. Imágenes claras y nítidas con colores vivos.', 150000, 5, 12, 1, '\\ProyectoAmbienteWeb\\Views\\img\\monitor-acer-k222hql.jpg'),
 (14, 'Monitor ASUS VP228HE', 'Monitor Full HD de 21.5\" diseñado para gaming y entretenimiento. Con tecnología GamePlus para mejorar la experiencia de juego. Imágenes fluidas y tiempos de respuesta rápidos.', 220000, 5, 6, 1, '\\ProyectoAmbienteWeb\\Views\\img\\asusvp.jpg'),
 (15, 'iPhone 13', 'Teléfono inteligente de última generación con potente rendimiento y cámara avanzada. Pantalla Super Retina XDR, chip A15 Bionic y sistema de doble cámara.', 450000, 2, 5, 1, '\\ProyectoAmbienteWeb\\Views\\img\\iphone13.jpg'),
-(17, 'Test', 'Producto test', 123, 1, 1, 1, '/asd');
+(17, 'Test2', ' Producto test2', 12500, 2, 2, 2, '\\ProyectoAmbienteWeb\\Views\\img\\Apple-iPhone-13.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveedor`
+-- Estructura de tabla para la tabla `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -317,7 +347,7 @@ CREATE TABLE `proveedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `proveedor`
+-- Volcado de datos para la tabla `proveedor`
 --
 
 INSERT INTO `proveedor` (`IDProveedor`, `Nombre`) VALUES
@@ -339,7 +369,7 @@ INSERT INTO `proveedor` (`IDProveedor`, `Nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Estructura de tabla para la tabla `role`
 --
 
 CREATE TABLE `role` (
@@ -348,7 +378,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `role`
+-- Volcado de datos para la tabla `role`
 --
 
 INSERT INTO `role` (`IdRol`, `NombreRol`) VALUES
@@ -358,7 +388,7 @@ INSERT INTO `role` (`IdRol`, `NombreRol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sucursal`
+-- Estructura de tabla para la tabla `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -368,7 +398,7 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `sucursal`
+-- Volcado de datos para la tabla `sucursal`
 --
 
 INSERT INTO `sucursal` (`IDSucursales`, `Nombre`, `Ubicacion`) VALUES
@@ -379,7 +409,7 @@ INSERT INTO `sucursal` (`IDSucursales`, `Nombre`, `Ubicacion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipoproducto`
+-- Estructura de tabla para la tabla `tipoproducto`
 --
 
 CREATE TABLE `tipoproducto` (
@@ -388,7 +418,7 @@ CREATE TABLE `tipoproducto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tipoproducto`
+-- Volcado de datos para la tabla `tipoproducto`
 --
 
 INSERT INTO `tipoproducto` (`IDTipoP`, `Tipo`) VALUES
@@ -401,7 +431,7 @@ INSERT INTO `tipoproducto` (`IDTipoP`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -416,7 +446,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`IDUsuario`, `Identificacion`, `Nombre`, `Telefono`, `Direccion`, `Correo`, `Contrasenna`, `Admin`) VALUES
@@ -424,11 +454,11 @@ INSERT INTO `usuarios` (`IDUsuario`, `Identificacion`, `Nombre`, `Telefono`, `Di
 (6, '456', 'Rayo McQueen', '888888', 'San Jose', 'sinicah864@miqlab.com', 'abc123', b'0');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `carrito`
+-- Indices de la tabla `carrito`
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`IDCarrito`),
@@ -436,13 +466,13 @@ ALTER TABLE `carrito`
   ADD KEY `FK_IDPro_Carrito` (`IDPro_Carrito`);
 
 --
--- Indexes for table `contacto`
+-- Indices de la tabla `contacto`
 --
 ALTER TABLE `contacto`
   ADD PRIMARY KEY (`Idcontacto`);
 
 --
--- Indexes for table `inventario`
+-- Indices de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`IDInv`),
@@ -450,7 +480,7 @@ ALTER TABLE `inventario`
   ADD KEY `FK_IDSucursal` (`IDSucursal`);
 
 --
--- Indexes for table `producto`
+-- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`IDPro`),
@@ -459,31 +489,31 @@ ALTER TABLE `producto`
   ADD KEY `FK_IDSucursales` (`IDSucursales`);
 
 --
--- Indexes for table `proveedor`
+-- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`IDProveedor`);
 
 --
--- Indexes for table `role`
+-- Indices de la tabla `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`IdRol`);
 
 --
--- Indexes for table `sucursal`
+-- Indices de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`IDSucursales`);
 
 --
--- Indexes for table `tipoproducto`
+-- Indices de la tabla `tipoproducto`
 --
 ALTER TABLE `tipoproducto`
   ADD PRIMARY KEY (`IDTipoP`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`IDUsuario`),
@@ -491,83 +521,83 @@ ALTER TABLE `usuarios`
   ADD UNIQUE KEY `idx_usuarios_Identificacion` (`Identificacion`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `carrito`
+-- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
   MODIFY `IDCarrito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `contacto`
+-- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
   MODIFY `Idcontacto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `inventario`
+-- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   MODIFY `IDInv` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `producto`
+-- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IDPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IDPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `proveedor`
+-- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   MODIFY `IDProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT de la tabla `role`
 --
 ALTER TABLE `role`
   MODIFY `IdRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `sucursal`
+-- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   MODIFY `IDSucursales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tipoproducto`
+-- AUTO_INCREMENT de la tabla `tipoproducto`
 --
 ALTER TABLE `tipoproducto`
   MODIFY `IDTipoP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `IDUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `carrito`
+-- Filtros para la tabla `carrito`
 --
 ALTER TABLE `carrito`
   ADD CONSTRAINT `FK_IDPro_Carrito` FOREIGN KEY (`IDPro_Carrito`) REFERENCES `producto` (`IDPro`),
   ADD CONSTRAINT `FK_IDUsuario` FOREIGN KEY (`IDUsuario`) REFERENCES `usuarios` (`IDUsuario`);
 
 --
--- Constraints for table `inventario`
+-- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `FK_IDPro` FOREIGN KEY (`IDPro`) REFERENCES `producto` (`IDPro`),
   ADD CONSTRAINT `FK_IDSucursal` FOREIGN KEY (`IDSucursal`) REFERENCES `sucursal` (`IDSucursales`);
 
 --
--- Constraints for table `producto`
+-- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `FK_IDProveedor` FOREIGN KEY (`IDProveedor`) REFERENCES `proveedor` (`IDProveedor`),

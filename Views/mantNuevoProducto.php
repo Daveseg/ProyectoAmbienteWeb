@@ -12,58 +12,80 @@
 
 <body>
 
-<?php MostrarHeaderModified();?>
-
+    <?php MostrarHeaderModified();?>
+    <?php
+    if(isset($_POST["MsjPantalla"]))
+    {
+        echo '<div style="text-align:center" class="alert alert-light" role="alert">' . $_POST["MsjPantalla"] . '</div>';
+    }
+    ?>
     <form role="form" class="text-center mx-auto" style="max-width: 25%;" action="" method="post">
 
-    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Agregar Nuevo Producto</h5>
+        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Agregar Nuevo Producto</h5>
 
-<label>Nombre Producto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtNombre" required name="txtNombre" type="text" class="form-control" placeholder="Nombre del producto">
-</div>
-
-
-<label>Precio Prodcuto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtPrecio" required name="txtPrecio" type="text" class="form-control" placeholder="Precio del producto">
-</div>
-
-<label>Descripción Producto</label>
-<textarea id="txtDescripcion" required name="txtDescripcion" class="form-control"
-    placeholder="Descripción del producto" style="resize: vertical; overflow: auto;"></textarea>
-
-<label>Tipo Prodcuto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtTipo" required name="txtTipo" type="text" class="form-control" placeholder="Tipo del producto">
-</div>  
-
-<label>Proveedor Prodcuto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtProveedor" required name="txtProveedor" type="text" class="form-control" placeholder="Proveedor del producto">
-</div>
-
-<label>Sucursal Prodcuto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtSucursal" required name="txtSucursal" type="text" class="form-control" placeholder="Sucursal del producto">
-</div>
-
-<label>Ruta de imagen del Prodcuto</label>
-<div class="input-group input-group-outline my-2">
-    <input id="txtRuta" required name="txtRuta" type="text" class="form-control" placeholder="Ruta de la imagen del producto">
-</div>
-
-
-<div class="text-center my-4">
-    <button id="btnRegistroProducto" name="btnRegistroProducto" type="submit" class="btn bg-gradient-primary w-100">Agregar Producto</button>
-</div>
-
-
-
-</form>
-<div class="d-flex justify-content-center align-items-center">
-            <a href="mantProductos.php" class="btn">Regresar</a>
+        <label>Nombre</label>
+        <div class="input-group input-group-outline my-2">
+            <input id="txtNombre" required name="txtNombre" type="text" class="form-control"
+                placeholder="Nombre del producto">
         </div>
+
+
+        <label>Precio</label>
+        <div class="input-group input-group-outline my-2">
+            <input id="txtPrecio" required name="txtPrecio" type="number" class="form-control"
+                placeholder="Precio del producto">
+        </div>
+
+        <label>Descripción</label>
+        <textarea id="txtDescripcion" required name="txtDescripcion" class="form-control"
+            placeholder="Descripción del producto" style="resize: vertical; overflow: auto;"></textarea>
+
+        <label>Tipo de Producto</label>
+        <div class="input-group input-group-outline my-2">
+            <select id="txtTipo" required name="txtTipo" class="form-control">
+                <?php
+        ConsultarTipoProductos();
+    ?>
+            </select>
+        </div>
+
+        <label>Proveedor</label>
+        <div class="input-group input-group-outline my-2">
+            <select id="txtProveedor" required name="txtProveedor" class="form-control">
+                <?php
+        ConsultarProveedores()
+    ?>
+            </select>
+
+        </div>
+
+        <label>Sucursal</label>
+        <div class="input-group input-group-outline my-2">
+            <select id="txtSucursal" required name="txtSucursal" class="form-control">
+                <?php
+        ConsultarSucursales()
+    ?>
+            </select>
+        </div>
+
+        <label>Ruta de imagen del Producto</label>
+        <div class="input-group input-group-outline my-2">
+            <input id="txtRuta" required name="txtRuta" type="file" class="form-control"
+                placeholder="Ruta de la imagen del producto">
+        </div>
+
+
+        <div class="text-center my-4">
+            <button id="btnRegistroProducto" name="btnRegistroProducto" type="submit" class="btn btn-primary">Agregar
+                Producto</button>
+        </div>
+
+
+
+    </form>
+    <div class="d-flex justify-content-center align-items-center">
+        <a href="mantProductos.php" class="btn btn-dark">Regresar</a>
+    </div>
 
 
 

@@ -46,7 +46,7 @@
             }
             else
             {   
-                $_POST["MsjPantalla"] = "No se ha podido validar su información";
+                $_POST["MsjPantalla"] = "Credenciales Invalidas";
             }
             
         }

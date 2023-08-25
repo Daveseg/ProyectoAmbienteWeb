@@ -27,7 +27,8 @@
             <th>Nombre Producto</th>
             <th>Precio Producto</th>
             <th>Descripción</th> 
-            <th>Acciones</th>                          
+            <th>Editar</th>                          
+            <th>Eliminar</th>                          
         </tr>
     </thead>
     <tbody>
@@ -37,11 +38,11 @@
     </tbody>
     </table>
         <div class="d-flex justify-content-center align-items-center">
-            <a href="mantNuevoProducto.php" class="btn">Agregar Nuevo Producto</a>
+            <a href="mantNuevoProducto.php" class="btn btn-primary">Agregar Nuevo Producto</a>
         </div>
         <br>
         <div class="d-flex justify-content-center align-items-center">
-            <a href="userOn.php" class="btn">Regresar</a>
+            <a href="userOn.php" class="btn btn-dark">Regresar</a>
         </div>
 
 

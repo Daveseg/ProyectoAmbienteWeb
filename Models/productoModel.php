@@ -95,12 +95,12 @@
         return $respuesta;
     }*/
 
-    function ActualizarProductoM($IdProducto, $Nombre, $Precio,$Descripcion)
+    function ActualizarProductoM($IdProducto, $Nombre, $Precio,$Descripcion,$Tipo,$Proveedor,$Sucursal,$RutaImagen)
     {
         try
         {
             $enlace = OpenBD();
-            $sentecia = "CALL ActualizarProducto('$IdProducto','$Nombre','$Precio','$Descripcion')";
+            $sentecia = "CALL ActualizarProducto($IdProducto,'$Nombre',$Precio,'$Descripcion',$Tipo,$Proveedor,$Sucursal,'$RutaImagen')";
             $respuesta = $enlace -> query($sentecia);
             CloseBD($enlace);
 
@@ -117,16 +117,65 @@
     {
         try
         {
+            $enlace = OpenBD();
+            $sentencia = "CALL RegistrarProducto('$Nombre', '$Precio', '$Descripcion','$Tipo', '$Proveedor',  '$Sucursal','$RutaImagen')";
+            $respuesta = $enlace -> query($sentencia);
+            CloseBD($enlace);
+
+            return $respuesta;
+        }
+        catch(Exception $e){
+            return false; 
+        }
+    }
+
+    function ListarTiposProductosM()
+    {
         $enlace = OpenBD();
-        $sentencia = "CALL RegistrarProducto('$Nombre', '$Precio', '$Descripcion','$Tipo', '$Proveedor',  '$Sucursal','$RutaImagen')";
-        $respuesta = $enlace -> query($sentencia);
+        $sentecia = "CALL ConsultarTipoProductos()";
+        $respuesta = $enlace -> query($sentecia);
         CloseBD($enlace);
 
         return $respuesta;
     }
-    catch(Exception $e){
-        return false; 
+
+    function ListarProveedoresM()
+    {
+        $enlace = OpenBD();
+        $sentecia = "CALL ConsultarProveedores()";
+        $respuesta = $enlace -> query($sentecia);
+        CloseBD($enlace);
+
+        return $respuesta;
     }
+
+    function ListarSucursalesM()
+    {
+        $enlace = OpenBD();
+        $sentecia = "CALL ConsultarSucursales()";
+        $respuesta = $enlace -> query($sentecia);
+        CloseBD($enlace);
+
+        return $respuesta;
     }
+
+    function EliminarProductoM($IdProducto)
+    {
+        try
+        {
+            $enlace = OpenBD();
+            $sentecia = "CALL EliminarProducto($IdProducto)";
+            $respuesta = $enlace -> query($sentecia);
+            CloseBD($enlace);
+
+
+            return $respuesta;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
 
 ?>
